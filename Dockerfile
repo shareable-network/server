@@ -6,5 +6,5 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm ci --only=production
 COPY .env .
-COPY src .
+COPY src src
 CMD "npm" "start"
