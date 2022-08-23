@@ -133,17 +133,10 @@ router.post('/api/entries/:key/comment', rescue(async (req, res) => {
   return res.json({});
 }));
 
-router.get('/api/proxy/:url', rescue(async (req, res) => {
-  const connector = https.get(req.params.url, (res2) => {
-    res2.pipe(res);
-  });
-  req.pipe(connector);
-}));
-
 router.post('/api/upload', rescue(async (req, res) => {
-  const authorization = 'Basic ' + btoa(process.env.INFURA_IPFS_PROJECT_ID + ':' + process.env.INFURA_IPFS_PROJECT_SECRET);
+  const authorization = 'Basic ' + btoa(process.env.IPFS_USERNAME + ':' + process.env.IPFS_PASSWORD);
   const ipfs = create({
-    host: 'ipfs.infura.io',
+    host: 'agra.network',
     port: 5001,
     protocol: 'https',
     headers: {authorization}
